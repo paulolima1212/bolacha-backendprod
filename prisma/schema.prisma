@@ -14,16 +14,18 @@ model orders {
   contact         String
   dateDelivery    String
   statusOrder     String
+  createdAt       DateTime          @default(now())
   orders_products orders_products[]
 }
 
 model orders_products {
-  id          Int     @id @default(autoincrement())
-  order       orders  @relation(fields: [ordersId], references: [id])
+  id          Int      @id @default(autoincrement())
+  order       orders   @relation(fields: [ordersId], references: [id])
   description String
   price       Decimal
   weight      String
   quantity    Decimal
+  createdAt   DateTime @default(now())
 
   ordersId Int
 
